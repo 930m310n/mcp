@@ -6,30 +6,48 @@ Two transports are included:
 
 | Binary | Transport | Use case |
 |---|---|---|
-| `geomelon-mcp` | stdio | Local clients — Claude Desktop, Cursor, Cline, Continue |
-| `geomelon-mcp-http` | HTTP (Streamable) | Remote / hosted server |
+| `geomelon-mcp` | stdio | Claude Desktop, Cursor, Cline, Continue |
+| `geomelon-mcp-http` | HTTP (Streamable) | Claude Code, remote / hosted server |
 
 ## Requirements
 
 - Node.js 18+
 - A [RapidAPI](https://rapidapi.com/hom3chuk/api/geomelon) key with the Geomelon API subscribed
 
-## Setup
+---
 
-Copy `.env.example` to `.env` and fill in your key:
+## Claude Code (HTTP)
+
+Create a `.env` file in the directory you'll run the server from:
 
 ```bash
 cp .env.example .env
+# then edit .env and set GEOMELON_API_KEY
 ```
 
-```env
-GEOMELON_API_KEY=your_rapidapi_key_here
-PORT=3000   # HTTP transport only
+Start the server (dotenv loads `.env` automatically):
+
+```bash
+npx geomelon-mcp-http
 ```
 
-## Local usage (stdio)
+Register it with Claude Code:
 
-### Claude Desktop
+```bash
+claude mcp add --transport http geomelon http://localhost:3000/mcp
+```
+
+Verify it's connected:
+
+```bash
+claude mcp list
+```
+
+The server must be running whenever you use Claude Code. To use a different port set `PORT=your_port` and update the URL in the `claude mcp add` command accordingly.
+
+---
+
+## Claude Desktop (stdio)
 
 Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 
@@ -47,9 +65,13 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 }
 ```
 
-### Cursor / Windsurf / Cline
+Restart Claude Desktop after saving.
 
-Add to your editor's MCP config (exact path varies by editor):
+---
+
+## Cursor / Windsurf / Cline (stdio)
+
+Add to your editor's MCP config:
 
 ```json
 {
@@ -63,17 +85,28 @@ Add to your editor's MCP config (exact path varies by editor):
 }
 ```
 
-## Remote usage (HTTP)
+---
+
+## Remote / hosted HTTP server
+
+Create a `.env` file on your server:
+
+```bash
+cp .env.example .env
+# set GEOMELON_API_KEY and PORT in .env
+```
 
 Start the server:
 
 ```bash
-GEOMELON_API_KEY=your_key PORT=3000 npx geomelon-mcp-http
+npx geomelon-mcp-http
 ```
 
-Then point your MCP client at `http://your-host:3000/mcp`.
+Then register with any MCP client using `http://localhost:3000/mcp` as the URL.
 
-The HTTP transport is stateless — each request is independent, no sessions to manage.
+The HTTP transport is stateless — each request is independent, no session management needed.
+
+---
 
 ## Available tools
 
@@ -107,22 +140,3 @@ The HTTP transport is stateless — each request is independent, no sessions to 
 |---|---|
 | `list_languages` | List all languages in the database |
 | `get_language` | Details for a language by UUID |
-
-## Development
-
-```bash
-npm install
-npm run build      # compile TypeScript → dist/
-```
-
-Run stdio server directly:
-
-```bash
-GEOMELON_API_KEY=your_key node dist/stdio.js
-```
-
-Run HTTP server directly:
-
-```bash
-GEOMELON_API_KEY=your_key PORT=3000 node dist/http.js
-```

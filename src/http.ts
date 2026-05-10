@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import 'dotenv/config';
 import http from 'node:http';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
