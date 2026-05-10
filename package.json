@@ -1,0 +1,28 @@
+{
+  "name": "geomelon-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for the Geomelon geographic API — stdio and remote HTTP transports",
+  "keywords": ["geomelon", "mcp", "model-context-protocol", "geography", "cities", "countries"],
+  "license": "MIT",
+  "bin": {
+    "geomelon-mcp": "./dist/stdio.js",
+    "geomelon-mcp-http": "./dist/http.js"
+  },
+  "files": ["dist", "README.md", ".env.example"],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.11.0",
+    "dotenv": "^16.0.0",
+    "geomelon": "^1.0.2",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
