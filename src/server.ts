@@ -93,9 +93,14 @@ export function createServer(apiKey: string): McpServer {
 
   server.tool(
     'list_countries',
-    'List all countries, optionally filtered by telephone code.',
+    'List countries with optional filtering by name prefix or telephone code. Supports localized names via preferredLanguages.',
     {
-      telephoneCode: z.string().optional().describe('Filter by dialing code (e.g. "1", "44")'),
+      name: z.string().optional().describe('Country name prefix to search for (matches English name and translations in preferredLanguages)'),
+      telephoneCode: z.string().optional().describe('Filter by dialing code (e.g. "+1", "+44")'),
+      preferredLanguages: z
+        .string()
+        .optional()
+        .describe('Comma-separated BCP 47 language tags; sets localizedName and drives translation name search (e.g. "fr,es,en")'),
       limit: z.number().int().min(1).max(500).optional().describe('Max results'),
       offset: z.number().int().min(0).optional().describe('Pagination offset'),
     },
