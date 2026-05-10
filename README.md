@@ -102,7 +102,7 @@ Start the server:
 npx geomelon-mcp-http
 ```
 
-Then register with any MCP client using `http://localhost:3000/mcp` as the URL.
+Then register with any MCP client using `http://your-host:3000/mcp` as the URL.
 
 The HTTP transport is stateless — each request is independent, no session management needed.
 
