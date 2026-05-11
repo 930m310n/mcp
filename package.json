@@ -15,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/930m310n/mcp.git"
   },
-  "homepage": "https://github.com/930m310n/mcp#readme",
+  "homepage": "https://geomelon.dev",
   "bugs": {
     "url": "https://github.com/930m310n/mcp/issues"
   },
@@ -35,7 +35,7 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.11.0",
     "dotenv": "^16.0.0",
-    "geomelon": "^1.0.5",
+    "geomelon": "^1.0.6",
     "zod": "^3.24.0"
   },
   "devDependencies": {
