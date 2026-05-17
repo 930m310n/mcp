@@ -116,6 +116,8 @@ The HTTP transport is stateless — each request is independent, no session mana
 |---|---|
 | `search_cities` | Search by name, country code, region, population range, sort order |
 | `get_city` | Full details for a city by UUID |
+| `get_city_translations` | All name translations for a city by UUID |
+| `get_city_settlement_types` | Settlement-type classifications for a city by UUID |
 | `cities_by_coordinates_closest` | Cities nearest to a lat/lon, ordered by distance |
 | `cities_by_coordinates_largest` | Largest cities near a lat/lon, ordered by population |
 | `cities_distance` | Distance in km between two cities |
@@ -124,8 +126,10 @@ The HTTP transport is stateless — each request is independent, no session mana
 
 | Tool | Description |
 |---|---|
-| `list_countries` | List all countries, filter by telephone dialing code |
+| `list_countries` | List countries, filter by name prefix or telephone dialing code |
 | `get_country` | Full details for a country by UUID (includes translations and regions) |
+| `get_country_translations` | Name translations for a country by UUID |
+| `get_country_regions` | All administrative regions for a country by UUID |
 
 ### Regions
 
@@ -133,6 +137,7 @@ The HTTP transport is stateless — each request is independent, no session mana
 |---|---|
 | `list_regions` | List regions, filter by country UUID |
 | `get_region` | Full details for a region by UUID |
+| `get_region_translations` | Name translations for a region by UUID |
 
 ### Languages
 
@@ -140,3 +145,15 @@ The HTTP transport is stateless — each request is independent, no session mana
 |---|---|
 | `list_languages` | List all languages in the database |
 | `get_language` | Details for a language by UUID |
+
+### Compound tools
+
+These tools chain multiple API calls internally to save round-trips.
+
+| Tool | Description |
+|---|---|
+| `find_cities_near_city` | Given a city UUID, find nearby cities ordered by distance or population |
+| `city_context` | Fetch a city together with its full country and region details in one call |
+| `country_overview` | Fetch a country (by UUID or name), its regions, and top cities by population |
+| `compare_cities` | Fetch two cities and the distance between them in one call |
+| `search_cities_in_country` | Search cities using a country name instead of an ISO code |
