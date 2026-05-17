@@ -13,12 +13,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/930m310n/mcp.git"
+    "url": "git+https://github.com/930m310n/geomelon-mcp.git"
   },
-  "mcpName": "io.github.930m310n/mcp",
+  "mcpName": "io.github.930m310n/geomelon-mcp",
   "homepage": "https://geomelon.dev",
   "bugs": {
-    "url": "https://github.com/930m310n/mcp/issues"
+    "url": "https://github.com/930m310n/geomelon-mcp/issues"
   },
   "bin": {
     "geomelon-mcp": "./dist/stdio.js",

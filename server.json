@@ -1,0 +1,36 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.930m310n/geomelon-mcp",
+  "description": "MCP server for the Geomelon geographic API — stdio and remote HTTP transports",
+  "repository": {
+    "url": "https://github.com/930m310n/geomelon-mcp",
+    "source": "github"
+  },
+  "version": "1.0.7",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "geomelon-mcp",
+      "version": "1.0.7",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "description": "Your RapidAPI key for Geomelon",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true,
+          "name": "GEOMELON_API_KEY"
+        },
+        {
+          "description": "Port to run HTTP MCP on",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true,
+          "name": "PORT"
+        }
+      ]
+    }
+  ]
+}
