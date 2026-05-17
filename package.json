@@ -15,6 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/930m310n/mcp.git"
   },
+  "mcpName": "io.github.930m310n/mcp",
   "homepage": "https://geomelon.dev",
   "bugs": {
     "url": "https://github.com/930m310n/mcp/issues"
